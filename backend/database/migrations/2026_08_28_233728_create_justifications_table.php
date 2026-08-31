@@ -6,20 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('justifications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('demande_conge_id')
+                ->constrained('demandes_conge')
+                ->cascadeOnDelete();
+            $table->string('chemin_fichier');
+            $table->string('type_fichier');
+            $table->timestamp('date_upload')->useCurrent();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('justifications');
