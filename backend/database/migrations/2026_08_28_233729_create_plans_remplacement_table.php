@@ -6,20 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('plans_remplacement', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('demande_conge_id')
+                ->unique()
+                ->constrained('demandes_conge')
+                ->cascadeOnDelete();
+            $table->foreignId('utilisateur_id')
+                ->nullable()
+                ->constrained('users')
+                ->nullOnDelete();
+            $table->string('nom_propose')->nullable();
+            $table->date('date_rattrapage')->nullable();
+            $table->string('module_concerne')->nullable();
+            $table->string('statut')->default('en_attente');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('plans_remplacement');
