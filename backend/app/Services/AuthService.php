@@ -12,5 +12,12 @@ class AuthService
      
         $user = User::where('email', $email)->first();
 
-    }
+        if (!$user || !Hash::check($password, $user->password)) {
+            return [
+                'success' => false,
+                'message' => 'Identifiants incorrects.',
+            ];
+
+        }
+     }
 }    
