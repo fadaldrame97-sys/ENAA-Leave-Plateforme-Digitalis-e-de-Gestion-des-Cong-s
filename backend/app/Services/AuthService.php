@@ -19,5 +19,15 @@ class AuthService
             ];
 
         }
+
+        $token = $user->createToken('enaa-token')->plainTextToken;
+
+        return [
+            'success' => true,
+            'user' => $user,
+            'token' => $token,
+        ];
      }
+
+
 }    
