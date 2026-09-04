@@ -2,6 +2,7 @@ export default function DashboardPage(props) {
   var user = props.user;
   var onLogout = props.onLogout;
   var onNewRequest = props.onNewRequest;
+  var onMyRequests = props.onMyRequests;
   var onApprovals = props.onApprovals;
   var onApprovalsHR = props.onApprovalsHR;
 
@@ -27,6 +28,13 @@ export default function DashboardPage(props) {
           className="w-full bg-green-700 text-white rounded-lg py-2 text-sm font-medium hover:opacity-90"
         >
           Nouvelle demande de congé
+        </button>
+
+        <button
+          onClick={onMyRequests}
+          className="w-full bg-gray-700 text-white rounded-lg py-2 text-sm font-medium hover:opacity-90"
+        >
+          Mes demandes
         </button>
 
         {afficherBoutonManager === true && (
