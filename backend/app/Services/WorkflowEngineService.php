@@ -21,4 +21,8 @@ class WorkflowEngineService
             'date_creation' => now(),
         ]);
     }
+
+     public function approuverParManager(DemandeConge $demande): void{
+        $demande->update(['statut' => 'pendingHR']);
+    }
  }
