@@ -47,13 +47,18 @@ class DemandeCongeController extends Controller
         return response()->json($demandes);
     }
 
-     public function approuver(DemandeConge $demandeConge, Request $request)
-    {
+     public function approuver(DemandeConge $demandeConge, Request $request){
         if ($demandeConge->statut === 'pendingManager') {
             $this->workflow->approuverParManager($demandeConge);
         } elseif ($demandeConge->statut === 'pendingHR') {
             $this->workflow->approuverParRH($demandeConge);
         }
+
+        return response()->json($demandeConge->fresh());
+    }
+
+     public function refuser(DemandeConge $demandeConge) {
+        $this->workflow->refuser($demandeConge);
 
         return response()->json($demandeConge->fresh());
     }
