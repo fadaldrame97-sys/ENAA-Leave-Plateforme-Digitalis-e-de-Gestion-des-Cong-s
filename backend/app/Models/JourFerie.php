@@ -9,6 +9,8 @@ class JourFerie extends Model
 {
     use HasFactory;
 
+    protected $table = 'jours_feries';
+
     protected $fillable = ['nom', 'date', 'recurrent'];
 
     protected function casts(): array

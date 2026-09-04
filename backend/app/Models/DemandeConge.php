@@ -9,6 +9,8 @@ class DemandeConge extends Model
 {
     use HasFactory;
 
+    protected $table = 'demandes_conge';
+
     protected $fillable = [
         'utilisateur_id',
         'type_conge_id',

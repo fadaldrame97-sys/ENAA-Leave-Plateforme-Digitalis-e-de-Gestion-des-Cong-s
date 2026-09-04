@@ -9,6 +9,8 @@ class PlanRemplacement extends Model
 {
     use HasFactory;
 
+    protected $table = 'plans_remplacement';
+
     protected $fillable = [
         'demande_conge_id',
         'utilisateur_id',

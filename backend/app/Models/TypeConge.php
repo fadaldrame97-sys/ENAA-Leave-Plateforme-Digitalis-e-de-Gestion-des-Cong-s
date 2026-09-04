@@ -9,6 +9,8 @@ class TypeConge extends Model
 {
     use HasFactory;
 
+    protected $table = 'types_conge';
+
     protected $fillable = ['nom', 'jour_reste_par_mois', 'necessite_justificatif'];
 
     protected function casts(): array
