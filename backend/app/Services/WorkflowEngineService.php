@@ -25,4 +25,8 @@ class WorkflowEngineService
      public function approuverParManager(DemandeConge $demande): void{
         $demande->update(['statut' => 'pendingHR']);
     }
+
+     public function approuverParRH(DemandeConge $demande): void {
+        $demande->update(['statut' => 'approved']);
+    }
  }
