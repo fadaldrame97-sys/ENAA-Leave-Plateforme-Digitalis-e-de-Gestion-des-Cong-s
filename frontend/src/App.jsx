@@ -2,6 +2,7 @@ import { useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import NewRequestPage from "./pages/NewRequestPage";
+import MyRequestsPage from "./pages/MyRequestsPage";
 import ApprovalsPage from "./pages/ApprovalsPage";
 import ApprovalsHRPage from "./pages/ApprovalsHRPage";
 
@@ -24,6 +25,10 @@ function App() {
     setPage("newRequest");
   }
 
+  function goToMyRequests() {
+    setPage("myRequests");
+  }
+
   function goToApprovals() {
     setPage("approvals");
   }
@@ -44,6 +49,10 @@ function App() {
     return <NewRequestPage onBack={goToDashboard} />;
   }
 
+  if (page === "myRequests") {
+    return <MyRequestsPage onBack={goToDashboard} />;
+  }
+
   if (page === "approvals") {
     return <ApprovalsPage onBack={goToDashboard} />;
   }
@@ -57,6 +66,7 @@ function App() {
       user={user}
       onLogout={handleLogout}
       onNewRequest={goToNewRequest}
+      onMyRequests={goToMyRequests}
       onApprovals={goToApprovals}
       onApprovalsHR={goToApprovalsHR}
     />
