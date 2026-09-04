@@ -1,4 +1,4 @@
-export default function DashboardPage({ user, onLogout, onNewRequest }) {
+export default function DashboardPage({ user, onLogout, onNewRequest, onApprovals }) {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-xl shadow-sm w-full max-w-sm space-y-3">
@@ -12,6 +12,15 @@ export default function DashboardPage({ user, onLogout, onNewRequest }) {
         >
           Nouvelle demande de congé
         </button>
+
+        {user.role === "manager" && (
+          <button
+            onClick={onApprovals}
+            className="w-full bg-blue-700 text-white rounded-lg py-2 text-sm font-medium hover:opacity-90"
+          >
+            Demandes à valider
+          </button>
+        )}
 
         <button
           onClick={onLogout}
