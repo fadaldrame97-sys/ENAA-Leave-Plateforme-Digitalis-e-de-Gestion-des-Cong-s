@@ -10,15 +10,22 @@ use Illuminate\Http\Request;
 
 class DemandeCongeController extends Controller
 {
-    public function __construct(protected WorkflowEngineService $workflow)
-    {
+    public function __construct(protected WorkflowEngineService $workflow){
     }
 
   
-    public function store(StoreDemandeCongeRequest $request)
-    {
+    public function store(StoreDemandeCongeRequest $request){
         $demande = $this->workflow->creerDemande($request->user(), $request->validated());
 
         return response()->json($demande, 201);
+    }
+
+    public function mesRequetes(Request $request){
+        $demandes = DemandeConge::where('utilisateur_id', $request->user()->id)
+            ->with('typeConge')
+            ->orderBy('date_creation', 'desc')
+            ->get();
+
+        return response()->json($demandes);
     }
 }
