@@ -29,4 +29,8 @@ class WorkflowEngineService
      public function approuverParRH(DemandeConge $demande): void {
         $demande->update(['statut' => 'approved']);
     }
+
+     public function refuser(DemandeConge $demande): void {
+        $demande->update(['statut' => 'rejected']);
+    }
  }
