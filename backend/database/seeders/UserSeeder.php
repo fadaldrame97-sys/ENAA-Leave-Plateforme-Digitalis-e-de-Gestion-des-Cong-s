@@ -25,10 +25,24 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
+            'name' => 'Fallou Dramé',
+            'email' => 'drame@gmail.com',
+            'password' => Hash::make('password'),
+            'role' => 'rh',
+        ]);
+
+        User::create([
+            'name' => 'Coumba',
+            'email' => 'sy@gmail.com',
+            'password' => Hash::make('password'),
+            'role' => 'formateur',
+        ]);
+
+        User::create([
             'name' => 'Fadal Dramé',
             'email' => 'fadal@gmail.com',
             'password' => Hash::make('password'),
-            'role' => 'rh',
+            'role' => 'admin',
         ]);
     }
 }
