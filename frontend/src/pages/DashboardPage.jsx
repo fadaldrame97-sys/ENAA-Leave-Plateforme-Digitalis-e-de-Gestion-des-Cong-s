@@ -1,4 +1,20 @@
-export default function DashboardPage({ user, onLogout, onNewRequest, onApprovals }) {
+export default function DashboardPage(props) {
+  var user = props.user;
+  var onLogout = props.onLogout;
+  var onNewRequest = props.onNewRequest;
+  var onApprovals = props.onApprovals;
+  var onApprovalsHR = props.onApprovalsHR;
+
+  var afficherBoutonManager = false;
+  if (user.role === "manager") {
+    afficherBoutonManager = true;
+  }
+
+  var afficherBoutonRH = false;
+  if (user.role === "rh") {
+    afficherBoutonRH = true;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-xl shadow-sm w-full max-w-sm space-y-3">
@@ -13,12 +29,21 @@ export default function DashboardPage({ user, onLogout, onNewRequest, onApproval
           Nouvelle demande de congé
         </button>
 
-        {user.role === "manager" && (
+        {afficherBoutonManager === true && (
           <button
             onClick={onApprovals}
             className="w-full bg-blue-700 text-white rounded-lg py-2 text-sm font-medium hover:opacity-90"
           >
-            Demandes à valider
+            Demandes à valider (Manager)
+          </button>
+        )}
+
+        {afficherBoutonRH === true && (
+          <button
+            onClick={onApprovalsHR}
+            className="w-full bg-purple-700 text-white rounded-lg py-2 text-sm font-medium hover:opacity-90"
+          >
+            Demandes à valider (RH)
           </button>
         )}
 
