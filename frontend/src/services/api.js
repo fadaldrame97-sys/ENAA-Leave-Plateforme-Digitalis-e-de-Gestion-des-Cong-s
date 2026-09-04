@@ -16,4 +16,10 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+
+export const leaveService = {
+  createRequest: (data) => api.post("/demandes-conge", data),
+  getMyRequests: () => api.get("/demandes-conge/me"),
+};
+
 export default api;
