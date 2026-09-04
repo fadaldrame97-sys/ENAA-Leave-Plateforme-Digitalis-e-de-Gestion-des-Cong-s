@@ -28,4 +28,14 @@ class DemandeCongeController extends Controller
 
         return response()->json($demandes);
     }
+
+
+     public function enAttenteManager(){
+        
+        $demandes = DemandeConge::where('statut', 'pendingManager')
+            ->with('utilisateur', 'typeConge')
+            ->get();
+
+        return response()->json($demandes);
+    }
 }
