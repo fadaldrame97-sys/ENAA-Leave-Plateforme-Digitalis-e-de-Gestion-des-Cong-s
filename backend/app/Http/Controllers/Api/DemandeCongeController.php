@@ -31,8 +31,16 @@ class DemandeCongeController extends Controller
 
 
      public function enAttenteManager(){
-        
+
         $demandes = DemandeConge::where('statut', 'pendingManager')
+            ->with('utilisateur', 'typeConge')
+            ->get();
+
+        return response()->json($demandes);
+    }
+
+     public function enAttenteRH(){
+        $demandes = DemandeConge::where('statut', 'pendingHR')
             ->with('utilisateur', 'typeConge')
             ->get();
 
