@@ -3,35 +3,62 @@ import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import NewRequestPage from "./pages/NewRequestPage";
 import ApprovalsPage from "./pages/ApprovalsPage";
+import ApprovalsHRPage from "./pages/ApprovalsHRPage";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [page, setPage] = useState("dashboard");
+  var userState = useState(null);
+  var user = userState[0];
+  var setUser = userState[1];
 
-  const handleLogout = () => {
+  var pageState = useState("dashboard");
+  var page = pageState[0];
+  var setPage = pageState[1];
+
+  function handleLogout() {
     localStorage.removeItem("token");
     setUser(null);
     setPage("dashboard");
-  };
+  }
 
-  if (!user) {
+  function goToNewRequest() {
+    setPage("newRequest");
+  }
+
+  function goToApprovals() {
+    setPage("approvals");
+  }
+
+  function goToApprovalsHR() {
+    setPage("approvalsHR");
+  }
+
+  function goToDashboard() {
+    setPage("dashboard");
+  }
+
+  if (user === null) {
     return <LoginPage onLoginSuccess={setUser} />;
   }
 
   if (page === "newRequest") {
-    return <NewRequestPage onBack={() => setPage("dashboard")} />;
+    return <NewRequestPage onBack={goToDashboard} />;
   }
 
   if (page === "approvals") {
-    return <ApprovalsPage onBack={() => setPage("dashboard")} />;
+    return <ApprovalsPage onBack={goToDashboard} />;
+  }
+
+  if (page === "approvalsHR") {
+    return <ApprovalsHRPage onBack={goToDashboard} />;
   }
 
   return (
     <DashboardPage
       user={user}
       onLogout={handleLogout}
-      onNewRequest={() => setPage("newRequest")}
-      onApprovals={() => setPage("approvals")}
+      onNewRequest={goToNewRequest}
+      onApprovals={goToApprovals}
+      onApprovalsHR={goToApprovalsHR}
     />
   );
 }
